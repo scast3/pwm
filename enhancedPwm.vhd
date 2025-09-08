@@ -3,12 +3,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 library work;
 use work.basicBuildingBlocksVhdl_package.all;
 
-entity genericAdder is
-    generic(N: integer := 4);
-    port( a,b: in std_logic_vector(N-1 downto 0);
-        sum: out std_logic_vector(N-1 downto 0));
-end genericAdder;
-
 entity enhancedPwm is
     Port ( clk : in STD_LOGIC;
         resetn : in STD_LOGIC;
@@ -23,12 +17,6 @@ architecture Behavioral of enhancedPwm is
     signal E255, dutyGreateCnt : STD_LOGIC;
     signal dutyCycle_int STD_LOGIC_VECTOR (8 downto 0);
     signal pwmCount_int STD_LOGIC_VECTOR (8 downto 0);
-
-    component genericCompare is
-        generic(N: integer := 4);
-        port(x,y : in std_logic_vector(N-1 downto 0);
-            g,l,e: out std_logic);
-    end component;
 
     component genericCompare is
         generic(N: integer := 4);
