@@ -4,7 +4,13 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity enhancedPwm_tb is
---  Port ( );
+    Port ( clk : in STD_LOGIC;
+        resetn : in STD_LOGIC;
+        dutyCycle : in STD_LOGIC_VECTOR (8 downto 0);
+        enb : in STD_LOGIC;
+        pwmSignal : out STD_LOGIC;
+        pwmCount : out STD_LOGIC_VECTOR (7 downto 0);
+        rollOver : out STD_LOGIC);
 end enhancedPwm_tb;
 
 architecture Behavioral of enhancedPwm_tb is
