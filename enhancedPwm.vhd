@@ -14,9 +14,9 @@ entity enhancedPwm is
 end enhancedPwm;
 
 architecture Behavioral of enhancedPwm is
-    signal E255, dutyGreateCnt : STD_LOGIC;
-    signal dutyCycle_int STD_LOGIC_VECTOR (8 downto 0);
-    signal pwmCount_int STD_LOGIC_VECTOR (8 downto 0);
+    signal E255, dutyGreaterCnt : STD_LOGIC;
+    signal dutyCycle_int : STD_LOGIC_VECTOR (8 downto 0);
+    signal pwmCount_int : STD_LOGIC_VECTOR (8 downto 0);
 
     component genericCompare is
         generic(N: integer := 4);
@@ -36,7 +36,7 @@ architecture Behavioral of enhancedPwm is
     comp_9bit : genericCompare
         GENERIC MAP(9)
         PORT MAP(x => dutyCycle_int, 
-            y => '0' & pwmCount_int, 
+            y => ("0" & pwmCount_int), 
             g => dutyGreaterCnt, 
             l => open,
             e => open
