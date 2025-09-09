@@ -1,0 +1,28 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Sep  9 09:44:42 2025
+# Process ID         : 25720
+# Current directory  : C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/digital_design_lab1
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent18672 C:\Users\santi\OneDrive\Documents\Mines 5th Year\Digital Design\digital_design_lab1\digital_design_lab1.xpr
+# Log file           : C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/digital_design_lab1/vivado.log
+# Journal file       : C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/digital_design_lab1\vivado.jou
+# Running On         : laptop
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : Intel(R) Core(TM) 7 150U
+# CPU Frequency      : 2611 MHz
+# CPU Physical cores : 10
+# CPU Logical cores  : 12
+# Host memory        : 16856 MB
+# Swap memory        : 17048 MB
+# Total Virtual      : 33905 MB
+# Available Virtual  : 2226 MB
+#-----------------------------------------------------------
+start_guioopen_project {C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/digital_design_lab1/digital_design_lab1.xpr}
+update_compile_order -fileset sources_1
+add_files -norecurse {{C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/basicBuildingBlocksVhdl/genericComparator.vhd} {C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/basicBuildingBlocksVhdl/genericRegister.vhd} {C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/basicBuildingBlocksVhdl/basicBuildingBlocksVhdl_package.vhd}}
+update_compile_order -fileset sources_1
+set_property library work [get_files  {{C:/Users/santi/OneDrive/Documents/Mines 5th Year/Digital Design/basicBuildingBlocksVhdl/genericComparator.vhd}}]
