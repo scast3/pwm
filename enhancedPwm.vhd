@@ -20,14 +20,7 @@ architecture Behavioral of enhancedPwm is
     signal pwmCount9_int : STD_LOGIC_VECTOR (8 downto 0);
     signal counterControl : STD_LOGIC_VECTOR (7 downto 0);
 
-    process(clk, resetn)
-    begin
-        if resetn = '0' then
-            pwmSignal <= '0';
-        elsif rising_edge(clk) then
-            pwmSignal <= dutyGreaterCnt;
-        end if;
-    end process;
+
 
     component genericCompare is
         generic(N: integer := 4);
@@ -44,7 +37,19 @@ architecture Behavioral of enhancedPwm is
     
     begin
     
-    pwmCount9_int <= ("0" & pwmCount_int);
+    process(clk)
+        begin 
+        if(rising_edge(clk)) then
+            if(resetn = '0') then 
+                pwmSignal <= '0';
+            else 
+                pwmSignal <= dutyGreaterCnt; 
+            end if;
+        end if;       
+    end process; 
+    
+    pwmCount9_int <= '0' & pwmCount_int;
+    
     comp_9bit : genericCompare
         GENERIC MAP(9)
         PORT MAP(x => dutyCycle_int, 
@@ -80,18 +85,10 @@ architecture Behavioral of enhancedPwm is
             d => x"00",
             q => pwmCount_int
         );
-
-    U_DFF: genericRegister
-        GENERIC MAP (1)
-        PORT MAP (
-            clk    => clk,
-            resetn => resetn,
-            load   => '1',
-            d      => dutyGreaterCnt,
-            q      => pwmSignal
-        );
-
     
-    -- when/else logic for pwm goes here
+    
+    counterControl <= "10" when resetn = '0' else
+                  "01" when enable = '1' else
+                  "00";
     
 end Behavioral;
