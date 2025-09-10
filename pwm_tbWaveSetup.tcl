@@ -19,9 +19,9 @@ add_wave   -color gold	-radix unsigned /enhancedPwm_tb/uut/rollOver
 add_wave   -color purple	-radix unsigned /enhancedPwm_tb/uut/PwmCount
 add_wave   -color purple	-radix unsigned /enhancedPwm_tb/uut/dutyCycle
 
-add_wave   -color red			/enhancedPwm_tb/uut/counterEqualPeriod
-add_wave   -color red			/enhancedPwm_tb/uut/DutyCycleGreaterCounter
-add_wave   -color red			/enhancedPwm_tb/uut/cw
+add_wave   -color red			/enhancedPwm_tb/uut/E255
+add_wave   -color red			/enhancedPwm_tb/uut/dutyGreaterCnt
+add_wave   -color red			/enhancedPwm_tb/uut/counterControl
 
 
 

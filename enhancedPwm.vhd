@@ -87,7 +87,9 @@ architecture Behavioral of enhancedPwm is
             d => x"00",
             q => pwmCount_int
         );
-
+        
+    pwmCount <= pwmCount_int;
+    
 --  00  Hold
 --  01  load
 --  10  inc
@@ -97,5 +99,5 @@ architecture Behavioral of enhancedPwm is
                         "00" when inputCtrlVec = "01" else --  hold if E255 but no enable
                         "10" when inputCtrlVec = "10" else --  increase if neq 255
                         "11"; --  reset if E255 and counter enabled
-    
+    rollOver <= '1' when inputCtrlVec = "11" else '0';
 end Behavioral;
