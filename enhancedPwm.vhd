@@ -18,8 +18,8 @@ architecture Behavioral of enhancedPwm is
     signal dutyCycle_int : STD_LOGIC_VECTOR (8 downto 0);
     signal pwmCount_int : STD_LOGIC_VECTOR (7 downto 0);
     signal pwmCount9_int : STD_LOGIC_VECTOR (8 downto 0);
-    signal counterControl : STD_LOGIC_VECTOR (7 downto 0);
-
+    signal counterControl : STD_LOGIC_VECTOR (1 downto 0);
+    signal inputCtrlVec: STD_LOGIC_VECTOR(1 downto 0);
 
 
     component genericCompare is
@@ -30,13 +30,14 @@ architecture Behavioral of enhancedPwm is
 
     component genericRegister is
         generic(N: integer := 4);
-        port ( clk, reset,load: in std_logic;
+        port ( clk, resetn, load: in std_logic;
             d: in std_logic_vector(N-1 downto 0);
             q: out std_logic_vector(N-1 downto 0) );
     end component;
     
     begin
     
+    -- DFF to address glitching
     process(clk)
         begin 
         if(rising_edge(clk)) then
@@ -48,6 +49,7 @@ architecture Behavioral of enhancedPwm is
         end if;       
     end process; 
     
+    -- zero-pad the pwm count, needs to be 9-bits
     pwmCount9_int <= '0' & pwmCount_int;
     
     comp_9bit : genericCompare
@@ -71,7 +73,7 @@ architecture Behavioral of enhancedPwm is
     reg_inst: genericRegister
         GENERIC MAP(9)
         PORT MAP(clk => clk, 
-            reset => resetn, 
+            resetn => resetn, 
             load => E255,
             d => dutyCycle, 
             q => dutyCycle_int
@@ -85,10 +87,15 @@ architecture Behavioral of enhancedPwm is
             d => x"00",
             q => pwmCount_int
         );
-    
-    
-    counterControl <= "10" when resetn = '0' else
-                  "01" when enable = '1' else
-                  "00";
+
+--  00  Hold
+--  01  load
+--  10  inc
+--  11  reset
+    inputCtrlVec <= enb & E255;
+    counterControl <=   "00" when inputCtrlVec = "00" else --  hold
+                        "00" when inputCtrlVec = "01" else --  hold if E255 but no enable
+                        "10" when inputCtrlVec = "10" else --  increase if neq 255
+                        "11"; --  reset if E255 and counter enabled
     
 end Behavioral;

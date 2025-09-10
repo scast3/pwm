@@ -2,11 +2,8 @@
 vhdl xil_defaultlib  \
 "../../../../../basicBuildingBlocksVhdl/basicBuildingBlocksVhdl_package.vhd" \
 "../../../../enhancedPwm.vhd" \
-
-vhdl work  \
 "../../../../../basicBuildingBlocksVhdl/genericComparator.vhd" \
-
-vhdl xil_defaultlib  \
+"../../../../../basicBuildingBlocksVhdl/genericCounter.vhd" \
 "../../../../../basicBuildingBlocksVhdl/genericRegister.vhd" \
 "../../../../enhancedPwm_tb.vhd" \
 
